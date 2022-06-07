@@ -1,0 +1,108 @@
+:root{
+    --border-radius: 25px
+}
+
+.weather{
+    background: #232357;
+    width: 100vw;
+    height: 100vh;
+
+    .weather-block-env{
+        padding: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        
+        .weather-block{
+            background: #FFF;
+            border-radius: var(--border-radius);
+            
+            .weather-left{
+                padding: 20px;
+                
+                .weather-icon{
+                    width: auto;
+                    height: 200px;
+                }
+                
+                .weather-temperature{
+                    font-size: 3em;
+                }
+                
+            }
+    
+            .weather-right{
+                background: #E7E9EA;
+                color: #232357;
+                border-radius: 0 25px 25px 0;
+
+                .weather-select-env{
+                    line-height: 6vh;
+                    font-size: 1.25em;
+                    padding-left: 10px;
+                    border-bottom: 1px solid #232357;
+
+                    .weather-select-icon{
+                        font-size: 1em;
+                    }
+
+                    .weather-select{
+                        width: 100%;
+                        height: 100%;
+
+                        .weather-select-button{
+                            width: 100%;
+                            height: 100%;
+                            font-size: 1.5em;
+                            text-align: left;
+                            background: #E7E9EA;
+                            color: #232357;
+                            background: inherit;
+                            border: none;
+                        }
+
+                        .weather-select-dropdown-env{
+                            width: 100%;
+                        }
+                    }
+
+                    .weather-refresh{
+                        width: 100%;
+                        height: 100%;
+                        background: inherit;
+                        color: #232357;
+                        border: none;
+                    }
+                }
+
+                .weather-condition-env{
+                    // height: 300px;       // if set, area would scrollable
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    padding: 10px;
+
+                    .weather-condition{
+                        background: #FFF;
+                        border-radius: var(--border-radius);
+                        text-align: center;
+                        padding: 10px;
+                        margin: 5px;
+
+                        .weather-condition-icon{
+                            font-size: 3em;
+                        }
+
+                        .weather-condition-title{
+                            font-size: 1.5em;
+                        }
+
+                        .weather-condition-info{
+                            font-size: 1.25em;
+                            opacity: 0.7;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
