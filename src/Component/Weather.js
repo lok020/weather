@@ -22,25 +22,32 @@ class Weather extends Component {
 
   componentDidMount = () => {
     // default using london id: 2643743
-    this.fetchUrl("2643743");
+    this.fetchUrl("2643743").then((data) => this.setState({city_info: data}) );
 
   }
-  
-  async fetchUrl(city_id) {
+
+  // potential issue: async and setState on didMount cause double loading on first load when app start
+  fetchUrl = async (city_id) => {
     // using https://openweathermap.org/ to fetch the weather
     // documentation: https://openweathermap.org/current
     // example: https://bithacker.dev/fetch-weather-openweathermap-api-javascript
-    const key = process.env.REACT_APP_API_KEY;
-    const url = `https://api.openweathermap.org/data/2.5/weather?id=${city_id}&appid=${key}`;
-    let response = await fetch (url);
-    if (response.status === 200) {
-        let data = await response.text();
-        this.setState({city_info: JSON.parse(data)});
+    try{
+      const key = process.env.REACT_APP_API_KEY;
+      const url = `https://api.openweathermap.org/data/2.5/weather?id=${city_id}&appid=${key}`;
+      let response = await fetch (url);
+      if (response.ok) {
+          let data = await response.json();
+          return data;
+      }
+    }
+    catch(error_message){
+      // handle the error message
+      console.log(error_message);
     }
   }
 
   citySelected = (e) => {
-    this.fetchUrl(e.target.id);
+    this.fetchUrl(e.target.id).then((data) => this.setState({city_info: data}) );
   }
   
   render() {
@@ -81,6 +88,11 @@ class Weather extends Component {
                     <Dropdown.Menu className='weather-select-dropdown-env' onClick={this.citySelected}>
                       <Dropdown.Item id="2643743">London</Dropdown.Item>
                       <Dropdown.Item id="1819729">Hong Kong</Dropdown.Item>
+                      <Dropdown.Item id="1850147">Tokyo</Dropdown.Item>
+                      <Dropdown.Item id="5809844">Seattle</Dropdown.Item>
+                      <Dropdown.Item id="5128638">New York</Dropdown.Item>
+                      <Dropdown.Item id="2968815">Paris</Dropdown.Item>
+                      <Dropdown.Item id="1835848">Seoul</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </Col>
